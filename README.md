@@ -11,7 +11,7 @@ A simple CLI app to get the weather for a city. The main purpose of this reposit
 * To install the dependencies, run `mix deps.get`
 * To run the test suite, run `mix test`
 * To generate the documentation, run `mix docs`. The documentation will be in `doc`
-* To generate an executable, run `mix escript.build`. It will generate the executable `issues`.
+* To generate an executable, run `mix escript.build`. It will generate the executable `weatherex`.
 
 Remember all interactions on this repository follow our [Code of Conduct](https://github.com/moonglum/weatherex/blob/master/CODE_OF_CONDUCT.md).
 
