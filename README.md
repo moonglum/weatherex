@@ -1,4 +1,4 @@
-# weatherex
+# weatherex [![Build Status](https://travis-ci.org/moonglum/weatherex.svg?branch=master)](https://travis-ci.org/moonglum/weatherex)
 
 A simple CLI app to get the weather for a city. The main purpose of this repository is learning Elixir though :wink:
 
