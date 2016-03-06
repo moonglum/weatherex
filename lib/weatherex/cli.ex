@@ -72,6 +72,8 @@ defmodule Weatherex.CLI do
   def process(%{ "api_key" => api_key, "city" => city, "country" => country, "format" => format }) do
     Weatherex.OpenWeatherMap.fetch(api_key, country, city, format)
     |> decode_response
+    |> Weatherex.Renderer.render(format)
+    |> IO.inspect
   end
 
   def decode_response({ :ok, response }), do: response
