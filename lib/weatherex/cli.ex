@@ -33,7 +33,7 @@ defmodule Weatherex.CLI do
       :help
 
       iex> Weatherex.CLI.parse_args(["de/cologne"], "API_KEY")
-      %{ "city" => "cologne", "country" => "de", "api_key" => "API_KEY" }
+      %{ "city" => "cologne", "country" => "de", "api_key" => "API_KEY", "format" => "metric" }
   """
   def parse_args(argv, api_key) do
     parse = OptionParser.parse(argv, switches: [ help: :boolean],
@@ -46,7 +46,7 @@ defmodule Weatherex.CLI do
       -> :help
 
     { [], [ target ], [] }
-      -> Map.merge(Regex.named_captures(@target_match, target), %{ "api_key" => api_key })
+      -> Map.merge(Regex.named_captures(@target_match, target), %{ "api_key" => api_key, "format" => "metric" })
 
     end
   end
@@ -69,8 +69,8 @@ defmodule Weatherex.CLI do
     System.halt(1)
   end
 
-  def process(%{ "api_key" => api_key, "city" => city, "country" => country}) do
-    Weatherex.OpenWeatherMap.fetch(api_key, country, city)
+  def process(%{ "api_key" => api_key, "city" => city, "country" => country, "format" => format }) do
+    Weatherex.OpenWeatherMap.fetch(api_key, country, city, format)
     |> decode_response
   end
 

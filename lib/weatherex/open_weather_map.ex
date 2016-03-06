@@ -10,8 +10,8 @@ defmodule Weatherex.OpenWeatherMap do
   @doc """
   Fetch a city from the OpenWeatherMap API
   """
-  def fetch(api_key, country, city) do
-    construct_url(api_key, country, city)
+  def fetch(api_key, country, city, format) do
+    construct_url(api_key, country, city, format)
     |> get
     |> handle_response
   end
@@ -21,11 +21,11 @@ defmodule Weatherex.OpenWeatherMap do
 
   ## Examples
 
-      iex> Weatherex.OpenWeatherMap.construct_url("API", "de", "munich")
-      "/data/2.5/forecast?q=munich,de&mode=json&appid=API"
+      iex> Weatherex.OpenWeatherMap.construct_url("API", "de", "munich", "metric")
+      "/data/2.5/forecast?q=munich,de&mode=json&appid=API&units=metric"
   """
-  def construct_url(api_key, country, city) do
-    "/data/2.5/forecast?q=#{city},#{country}&mode=json&appid=#{api_key}"
+  def construct_url(api_key, country, city, format) do
+    "/data/2.5/forecast?q=#{city},#{country}&mode=json&appid=#{api_key}&units=metric"
   end
 
   @doc """
