@@ -11,6 +11,7 @@ defmodule Weatherex.CLI do
   def main(argv) do
     argv
     |> parse_args(System.get_env("API_KEY"))
+    |> process
   end
 
   @doc """
@@ -48,5 +49,35 @@ defmodule Weatherex.CLI do
       -> Map.merge(Regex.named_captures(@target_match, target), %{ "api_key" => api_key })
 
     end
+  end
+
+  @doc """
+  Process the parsed commandline arguments
+  """
+  def process(:help) do
+    IO.puts """
+    usage: weatherex de/cologne
+      where de is the country code and cologne is the name of the city
+    """
+    System.halt(0)
+  end
+
+  def process(%{ "api_key" => nil}) do
+    IO.puts """
+    Please provide your API key via the environment variable API_KEY
+    """
+    System.halt(1)
+  end
+
+  def process(%{ "api_key" => api_key, "city" => city, "country" => country}) do
+    Weatherex.OpenWeatherMap.fetch(api_key, country, city)
+    |> decode_response
+  end
+
+  def decode_response({ :ok, response }), do: response
+
+  def decode_response({ :error, response }) do
+    IO.puts(response)
+    System.halt(1)
   end
 end
