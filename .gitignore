@@ -2,5 +2,6 @@
 /cover
 /deps
 /doc
+/weatherex
 erl_crash.dump
 *.ez

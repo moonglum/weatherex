@@ -3,6 +3,7 @@ defmodule Weatherex.Mixfile do
 
   def project do
     [app: :weatherex,
+     escript: escript_config,
      version: "0.0.1",
      name: "weatherex",
      source_url: "https://github.com/moonglum/weatherex",
