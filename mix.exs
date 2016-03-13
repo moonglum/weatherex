@@ -42,7 +42,8 @@ defmodule Weatherex.Mixfile do
       { :httpoison, "~> 0.8" },
       { :poison, "~> 1.5" },
       { :ex_doc, "~> 0.11" },
-      { :earmark, ">= 0.0.0" }
+      { :earmark, ">= 0.0.0" },
+      { :chronos, github: "nurugger07/chronos" }
     ]
   end
 
